@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 binding.questTv.setText(questions.get(i + 1).getQuestion());
                 binding.falseButton.setBackgroundColor(0xFF673AB7);
                 binding.trueButton.setBackgroundColor(0xFF673AB7);
+                viewModel.getQuestion().setValue(questions.get(i+1).getQuestion());
                 break;
             }
         }
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 binding.questTv.setText(questions.get(i - 1).getQuestion());
                 binding.falseButton.setBackgroundColor(0xFF673AB7);
                 binding.trueButton.setBackgroundColor(0xFF673AB7);
+                viewModel.getQuestion().setValue(questions.get(i-1).getQuestion());
                 break;
             }
         }
