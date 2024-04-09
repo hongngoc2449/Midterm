@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
                 boolean isCorrect = checkAnswer(quest,"True");
                 if(isCorrect){
                     quizSubmitList.add(new Quiz(quest,"Correct"));
-                    binding.falseButton.setBackgroundColor(0xFF00FF00);
+                    binding.trueButton.setBackgroundColor(0xFF00FF00);
                 }else{
                     quizSubmitList.add(new Quiz(quest,"Incorrect"));
-                    binding.falseButton.setBackgroundColor(Color.rgb(255,0,0));
+                    binding.trueButton.setBackgroundColor(Color.rgb(255,0,0));
                 }
             }
         });
@@ -102,18 +102,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        binding.backButton.setOnClickListener(v -> showPreviousQuestion());
-        binding.forwardButton.setOnClickListener(v -> showNextQuestion());
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPreviousQuestion();
+            }
+        });
+        binding.forwardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showNextQuestion();
+            }
+        });
     }
     private void showNextQuestion() {
-        int currentIndex = questions.indexOf(new Quiz(binding.questTv.getText().toString(), ""));
-        int nextIndex = (currentIndex + 1)% questions.size();
-        binding.questTv.setText((questions.get(nextIndex).getQuestion()));
+        for (int i = 0; i < questions.size() - 1; i++) {
+            if (questions.get(i).getQuestion().equals(binding.questTv.getText())) {
+                binding.questTv.setText(questions.get(i + 1).getQuestion());
+                binding.falseButton.setBackgroundColor(0xFF673AB7);
+                binding.trueButton.setBackgroundColor(0xFF673AB7);
+                break;
+            }
+        }
     }
     private void showPreviousQuestion() {
-        int currentIndex = questions.indexOf(new Quiz(binding.questTv.getText().toString(), ""));
-        int nextIndex = (currentIndex - 1 + questions.size())% questions.size();
-        binding.questTv.setText((questions.get(nextIndex).getQuestion()));
+        for (int i = 0; i < questions.size() - 1; i++) {
+            if (questions.get(i).getQuestion().equals(binding.questTv.getText())) {
+                binding.questTv.setText(questions.get(i - 1).getQuestion());
+                binding.falseButton.setBackgroundColor(0xFF673AB7);
+                binding.trueButton.setBackgroundColor(0xFF673AB7);
+                break;
+            }
+        }
     }
     private boolean checkAnswer(String question,String answer){
         for(Quiz q : questions){

@@ -2,6 +2,8 @@ package com.example.doanhongngoc;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +17,8 @@ public class DetailsActivity extends AppCompatActivity {
     private ArrayList<Quiz> submitList;
     private AppDatabase appDatabase;
     private QuizDao quizDao;
+    private ArrayAdapter arrayAdapter;
+    private ListView idList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +29,10 @@ public class DetailsActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        idList = findViewById(R.id.idList);
         submitList = getIntent().getParcelableArrayListExtra("answerList");
+        arrayAdapter = new QuizAdapter(this,submitList);
+        idList.setAdapter(arrayAdapter);
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
