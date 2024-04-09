@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         questions.add(new Quiz("Mùa Xuân là Spring","True"));
         questions.add(new Quiz("Mùa hạ Winter","False"));
         questions.add(new Quiz("Tia chớp được nhìn thấy trước khi nó được nghe thấy vì ánh sáng truyền nhanh hơn âm thanh.","True"));
-        questions.add(new Quiz("Mùa hạ Winter","False"));
+        questions.add(new Quiz("Mùa xuân là Summer","False"));
         questions.add(new Quiz("Melbourne là thủ đô của Úc.","False"));
         questions.add(new Quiz("Núi Phú Sĩ là ngọn núi cao nhất ở Nhật Bản.","True"));
         questions.add(new Quiz("Google ban đầu được gọi là BackRub.","False"));
